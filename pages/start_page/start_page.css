@@ -1,0 +1,80 @@
+div.login_form {
+    width: 20%;
+    margin: 0;
+    offset: 0;
+    color: aliceblue;
+    float: right;
+    height: 88%;
+    background-color: rgba(88, 199, 78, 0.15);
+}
+body, html{
+    height: 100%;
+}
+body{
+    margin: 0;
+    background-image: url("../../images/background_1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.raz{
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 90%;
+    min-height: 30px;
+}
+
+span.white_text{
+    font-size: 20px
+}
+
+h1 {
+    margin: 0;
+}
+
+
+.register_ref {
+    background: linear-gradient(45deg, #0a2a0b 40%, #f9e045 60%, #b7cdd6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #0B2349;
+}
+
+.main_container {
+    margin: 0;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+div.bottom {
+    background-color: rgba(1, 156, 195, 0.8);
+    width: 100%;
+    height: 4%;
+    text-align: center;
+}
+input.button{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 70%;
+    margin-left: 15%;
+}
+
+.header {
+    color: #283b2c;
+    text-align: center;
+    margin: 0;
+    height: 8%;
+    width: 100%;
+    background-color: rgba(9,0,195,0.35);
+}
+
+div.clear {
+    clear: both;
+}
+
+.form_word {
+    font-size: 20px;
+}
