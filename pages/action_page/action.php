@@ -4,33 +4,31 @@ session_start();
 $nick = $_SESSION['nickName'];
 	if(isset($_POST['mode'])){
 		$mode = $_POST['mode'];
-		$min = 0;
-		$max = 0;
+        $s_mode = "s_" . $mode;
+        $level = $_POST['level'];
+        include("../../php_scripts/DB_connect.php");
+        $query = mysqli_query($db, "SELECT $s_mode FROM levels WHERE level='$level'");
+        $query = mysqli_fetch_array($query);
+        $list = explode("/", $query[$s_mode]);
+        $list[0] = (int)$list[0];
+        $list[1] = (int)$list[1];
+        $min = $list[0];
+        $max = $list[1];
 		$operator = "";
 		switch($mode){
 			case "add":
-				$min = 100;
-				$max = 1000;
 				$operator = "+";
 				break;
 			case "sub":
-				$min = 100;
-				$max = 1000;
 				$operator = "-";
 				break;
 			case "mult":
-				$min = 2;
-				$max = 40;		
 				$operator = "*";
 				break;
 			case "sqr":
-				$min = 10;
-				$max = 100;
 				$operator = "^";	
 				break;
 			case "div":
-				$min = 10;
-				$max = 100;
 				$operator = "/";
 		}
 		
