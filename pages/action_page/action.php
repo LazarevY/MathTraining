@@ -1,6 +1,11 @@
 <?php
 session_name();
 session_start();
+if (!isset($_SESSION['nickName'])) {
+	session_destroy();
+	header('Location:../start_page/start_page.php');
+	exit();
+}
 $nick = $_SESSION['nickName'];
 	if(isset($_POST['mode'])){
 		$mode = $_POST['mode'];
@@ -44,22 +49,22 @@ echo <<<HERE
     <div class="user_bar">
         <div class="user_info">
             <div style="width: 65%; float: left; height: 100%;
-        line-height: 100%;">User : $nick
+        line-height: 100%;"><h2>User : $nick</h2>
             </div>
             <input class="exit_button" type="button" onclick="document.location.replace('../../php_scripts/exit.php');"
                    value="Выйти"></div>
     </div>
     <div class="content">
-            <div style="height: 30%; width: 100%; background-color: rgba(6,2,255,0.6)">
-            <table style="color: aliceblue">
+            <div style="height: 20%; width: 100%; background-color: rgba(6,2,255,0.6)">
+            <table class="statistic">
                 <tbody>
                     <tr>
-                        <td>Решено правильно</td>
-                        <td>Всего решено</td>
+                        <td class = "statistic">Решено правильно</td>
+                        <td class = "statistic">Всего решено</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center"><p id="right">0</p></td>
-                        <td style="text-align: center"><p id="all">0</p></td>
+                        <td class = "statistic"><p id="right">0</p></td>
+                        <td class = "statistic"><p id="all">0</p></td>
                     </tr>
                 </tbody>
             </table>
@@ -84,7 +89,7 @@ echo <<<HERE
     </div>
     <div class="clear"></div>
     <div class="bottom">
-    <input type="button" onclick="document.location.replace('../../php_scripts/set_statistic.php?mode='+'$mode'+'&right='+$('#right').text()+'&all='+$('#all').text()+'&');" value="Завершить"/>
+    <input type="button" onclick="document.location.replace('../../php_scripts/set_statistic.php?mode='+'$mode'+'&right='+$('#right').text()+'&all='+$('#all').text()+'&level='+'$level');" value="Завершить"/>
 </div>
 </div>
 <script type="text/javascript" src="../../javascripts/jquery-3.4.0.js"></script>

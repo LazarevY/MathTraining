@@ -14,8 +14,8 @@ echo <<< HERE
 <html lang="ru">
 <head>
     <meta charset = "utf-8">
-    <link rel = "stylesheet" type = "text/css"  href = "user_home.css">
-    <link rel = "stylesheet" type = "text/css"  href = "buttons.css">
+    <link rel = "stylesheet" type = "text/css"  href = "../general/template.css">
+    <link rel = "stylesheet" type = "text/css"  href = "../general/buttons.css">
     <title>Start page</title>
 </head>
 <body>
@@ -33,19 +33,17 @@ echo <<< HERE
 </div>
     <div class ="user_bar">
         <div class="user_info"><div style="width: 65%; float: left; height: 100%;
-        line-height: 100%;">User : $nick</div>
+        line-height: 100%;"><h2>User : $nick</h2></div>
         <input class="exit_button" type="button" onclick="document.location.replace('../../php_scripts/exit.php');" value="Выйти"></div>
     </div>
     <div class="left_panel">
     <input class = "current" type="button" value="Главная">
     <input class = "temp" type="button" onclick="document.location.replace('../user_state/user_state.php');" class = "temp" value="Статистика">
-    <input class = "temp" type="button" onclick="alert('Пошёл нахуй пидарас');" class = "temp" value="Настройки">
+    <input class = "temp" type="button" onclick="document.location.replace('../info_page/info_page.php');" class = "temp" value="Информация">
+    <input class = "temp" type="button" onclick="document.location.replace('../settings_page/settings_page.php');" class = "temp" value="Настройки">
 </div>
     <div class = "content">
-
-    
-    
-    
+        <h2 style="text-align: center;">Выберите режим</h2>
        <button class="mode" id = "mode_add" onclick="set_mode('mode','add','choose_level');" type="button">Сложение</button><!--
     --><button class="mode" id = "mode_sub" onclick="set_mode('mode','sub','choose_level');" type="button">Вычитание</button><!--
     --><button class="mode" id = "mode_mult" onclick="set_mode('mode','mult','choose_level');" type="button">Умножение</button><!--

@@ -17,8 +17,10 @@ if (isset($_POST['password'])) {
 //заносим введенный пользователем пароль в переменную $password, если он пустой, то уничтожаем переменную
 if (empty($login) or empty($password)) //если пользователь не ввел логин или пароль, то выдаем ошибку и останавливаем скрипт
 {
-    exit("<script>alert('Вы ввели не всю информацию, вернитесь назад и заполните все поля!')</script>");
-
+    session_start();
+    $_SESSION['login_mess'] = "Заполните все поля!";
+    header("Location:../pages/start_page/start_page.php");
+    exit;
 }
 //если логин и пароль введены, то обрабатываем их, чтобы теги и скрипты не работали, мало ли что люди могут ввести
 $login = stripslashes($login);
@@ -44,31 +46,21 @@ if (empty($myrow['id'])) {
     $hash_1 = PasswordStorage::pbkdf2("sha256", $password, $salt, 1000, 30);
     $hash = strval($hash_1);
     $result2 = mysqli_query($db, "INSERT INTO users (login,password_hash, salt) VALUES('$login','$hash','$salt')") or die(mysqli_error($db));
-    $result2 = mysqli_query($db, "INSERT INTO statistic (nick) VALUES('$login')") or die(mysqli_error($db));
+//    $result2 = mysqli_query($db, "INSERT INTO easy_statistic (nick) VALUES('$login')") or die(mysqli_error($db));
+//    $result2 = mysqli_query($db, "INSERT INTO mid_statistic (nick) VALUES('$login')") or die(mysqli_error($db));
+//    $result2 = mysqli_query($db, "INSERT INTO hard_statistic (nick) VALUES('$login')") or die(mysqli_error($db));
 // Проверяем, есть ли ошибки
     $res = $result2 ? "Регистрация прошла успешно!" : "Произошла ошибка!";
-}else{
-    $res = "Имя пользователя уже занято";
+} else {
+    session_start();
+    $_SESSION['login_mess'] = "Ник уже используется!";
+    header("Location:../pages/start_page/start_page.php");
+    exit;
 }
-    echo <<< HERE
-        <html lang="ru">
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-    <meta charset="UTF-8">
-    <title>Регистрация завершена!</title>
-</head>
-<body>
-<div class="view_block">
-    <span class = "message">$res</span>
-    <div class = "vertical_spacer"></div>
-    <div id = "bottom"> <a class="ref" href="../pages/start_page/start_page.php">Вернуться на главную страницу</a></div>
-
-</div>
-</body>
-</html>
-HERE;
-
-
+session_start();
+$_SESSION['login_mess'] = $res;
+header("Location:../pages/start_page/start_page.php");
+exit;
 
 function connect_toBase()
 {

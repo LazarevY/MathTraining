@@ -1,4 +1,4 @@
-div.login_form {
+div.reg_form {
     width: 20%;
     margin: 0;
     offset: 0;
@@ -7,10 +7,19 @@ div.login_form {
     height: 88%;
     background-color: rgba(88, 199, 78, 0.15);
 }
-body, html{
+
+div.login_form {
+    width: 80%;
+    color: aliceblue;
+    height: 88%;
+    float: left;
+}
+
+body, html {
     height: 100%;
 }
-body{
+
+body {
     margin: 0;
     background-image: url("../../images/background_1.jpg");
     background-size: cover;
@@ -55,11 +64,21 @@ div.bottom {
     height: 4%;
     text-align: center;
 }
-input.button{
+
+input.button {
     margin-top: 2%;
     margin-bottom: 2%;
     width: 70%;
     margin-left: 15%;
+}
+
+div.form_container {
+    text-align: center;
+    border: solid aquamarine;
+    border-radius: 3px;
+    width: 40%;
+    margin-top: 10%;
+    margin-left: 30%;
 }
 
 .header {

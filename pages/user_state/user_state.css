@@ -1,71 +1,3 @@
-html, body{
-    height: 100%;
-    margin: 0;
-}
-
-body{
-    background-image: url("../../images/numbers.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-div.main{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(71, 112, 142, 0.41);
-    position: relative;
-    zoom: normal;
-}
-
-div.user_bar{
-    margin: 0;
-    width: 100%;
-    height: 10%;
-    background-color: rgba(10,72,51,0.75);
-}
-
-div.left_panel{
-    float: left;
-    height: 85%;
-    width: 25%;
-    background-color: rgba(67,72,21,0.75);
-}
-.clear{
-    clear: both;
-}
-div.bottom{
-    width: 100%;
-    background-color: rgba(52,21,72,0.75);
-    height: 5%;
-}
-div.content{
-    color:rgba(250,250,250,0.68);
-    float: left;
-    height: 85%;
-    width: 75%;
-    background-color: rgba(72,10,7,0.75);
-}
-
-.user_info {
-    top: 0;
-    width: 20%;
-    height: 100%;
-    float: right;
-}
-
-input.exit_button{
-    width: 35%;
-    height: 100%;
-    float: right;
-}
-input.temp{
-    border: solid silver;
-    background-color: rgba(2,26,8,0.68);
-    color: lavender;
-    width: 100%;
-    height: 20%;
-}
-
 table.state_table{
     margin: 5px;
     color: aliceblue;
@@ -73,14 +5,15 @@ table.state_table{
     border: solid silver 2px;
 }
 
-td,th{
+td, th {
     border: solid silver 2px;
     padding: 10px;
 }
-input.current{
-    border: solid silver;
-    background-color: rgba(0, 24, 137, 0.89);
+
+.clear_button {
     color: lavender;
-    width: 100%;
-    height: 20%;
+    font-size: larger;
+    width: 25%;
+    height: 15%;
+    background-color: rgba(47, 89, 239, 0.82);
 }

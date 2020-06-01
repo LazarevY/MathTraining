@@ -1,15 +1,20 @@
-
 <?php
 session_name();
 session_start();
-if(isset($_SESSION['nickName'])){
+if (isset($_SESSION['nickName'])) {
     header("Location:../user_home_page/user_home.php");
     exit;
-}else{
-    session_destroy();
 }
-?>
-
+$message = "";
+$reg_message = "";
+if (isset($_SESSION['login_mess'])) {
+    $message = $_SESSION['login_mess'];
+}
+if (isset($_SESSION['reg_mess'])) {
+    $reg_message = $_SESSION['reg_mess'];
+}
+session_destroy();
+echo <<< HERE
 <html lang="ru">
 <head>
     <meta charset="utf-8">
@@ -25,27 +30,31 @@ if(isset($_SESSION['nickName'])){
         <div class="header" id="bl_1">
             <h1>Math Training</h1>
         </div>
-        <div class="login_form">
-            <span class = "form_word">Вход</span>
-            <hr>
-            <form autocomplete="on" method="post" action="../../php_scripts/login.php" name="login" class="log_form"
-                  id="login_form_">
-                <label for="nickName_field">
-                    <span class="white_text">Ваш никнейм:</span><br>
-                    <input class="raz" type="text" name="login_nickName" id="login_nickName_field">
-                </label>
-                <br>
+        <div class = "login_form">
+            <div class = "form_container"><span class = "form_word">Вход</span>
+                <p style="color: darkred">$message</p>
+                <hr>
+                <form style="width: 100%;" autocomplete="on" method="post" action="../../php_scripts/login.php" name="login" id="login_form_">
+                    <label for="nickName_field">
+                        <span class="white_text">Ваш никнейм:</span><br>
+                        <input class="raz" type="text" name="login_nickName" id="login_nickName_field">
+                    </label>
+                    <br>
 
-                <label for="password_field">
-                    <span class="white_text">Пароль:</span><br>
-                    <input class = "raz" type="password" name="login_password" id="login_password_field">
-                </label>
-                <br>
-                <input class="button" type="submit" name="input" id="login_input_button" value="Войти" onclick="setCookie('login_nickName',login_nickName.value)">
+                    <label for="password_field">
+                        <span class="white_text">Пароль:</span><br>
+                        <input class = "raz" type="password" name="login_password" id="login_password_field">
+                    </label>
+                    <br>
+                    <input style="width: 60%" type="submit" name="input" id="login_input_button" value="Войти" onclick="setCookie('login_nickName',login_nickName.value)">
 
-            </form>
-            <hr>
+                </form>
+            </div>
+
+        </div>
+        <div class="reg_form">
             <span class="form_word">Регистрация</span>
+            <p style="color: darkred">$reg_message</p>
             <hr>
             <form autocomplete="off" method="post" action="../../php_scripts/register.php" name="registration" class="regs_form"
                   id="register_form_1">
@@ -92,3 +101,5 @@ if(isset($_SESSION['nickName'])){
     <script >set_sizes('main_container')</script>
 </body>
 </html>
+HERE;
+?>

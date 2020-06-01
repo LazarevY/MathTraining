@@ -16,8 +16,9 @@ if (isset($_POST['login_password'])) {
 //заносим введенный пользователем пароль в переменную $password, если он пустой, то уничтожаем переменную
 if (empty($login) or empty($password)) //если пользователь не ввел логин или пароль, то выдаем ошибку и останавливаем скрипт
 {
+    session_start();
+    $_SESSION['login_mess'] = "Заполните все поля";
     exit("<script>
-alert('Вы ввели не всю информацию, вернитесь назад и заполните все поля!')
 document.location.replace('../pages/start_page/start_page.php');
 </script>");
 }
@@ -35,23 +36,12 @@ include("DB_connect.php");// файл bd.php должен быть в той ж�
 $result = mysqli_query($db, "SELECT * FROM users WHERE login='$login'"); //извлекаем из базы все данные о пользователе с введенным логином
 $myrow = mysqli_fetch_array($result);
 if (empty($myrow['password_hash'])) {
-    echo <<< HERE
-        <html lang="ru">
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-    <meta charset="UTF-8">
-    <title>Ошибка!</title>
-</head>
-<body>
-<div class="view_block">
-    <span class = "message">Неверные данные</span>
-    <div class = "vertical_spacer"></div>
-    <div id = "bottom"> <a class="ref" href="../pages/start_page/start_page.php">Вернуться на главную страницу</a></div>
-
-</div>
-</body>
-</html>
-HERE;
+    session_start();
+    $_SESSION['login_mess'] = "Неправильный логин или пароль!";
+    exit("<script>
+document.location.replace('../pages/start_page/start_page.php');
+</script>");
+    exit;
 } else {
     //если существует, то сверяем пароли
     require_once('PasswordStorage.php');
@@ -69,24 +59,11 @@ HERE;
         header('Location: ../pages/user_home_page/user_home.php');
         exit;
     } else {
-        echo <<< HERE
-        <html lang="ru">
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-    <meta charset="UTF-8">
-    <title>Ошибка!</title>
-</head>
-<body>
-<div class="view_block">
-    <span class = "message">Неверные данные</span>
-    <div class = "vertical_spacer"></div>
-    <div id = "bottom"> <a class="ref" href="../pages/start_page/start_page.php">Вернуться на главную страницу</a></div>
-
-</div>
-</body>
-</html>
-HERE;
-
+        session_start();
+        $_SESSION['login_mess'] = "Неправильный логин или пароль!";
+        exit("<script>
+document.location.replace('../pages/start_page/start_page.php');
+</script>");
     }
 }
 

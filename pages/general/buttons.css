@@ -4,10 +4,15 @@ button.level {
 }
 
 button.mode {
+    font-size: large;
     margin: 0;
     height: 20%;
     width: 33.333%;
     background-color: rgba(23, 137, 48, 0.77);
+}
+
+button.mode:hover {
+    text-decoration: underline currentColor;
 }
 
 #mode_add:hover {
@@ -42,4 +47,22 @@ div.select_level {
     background-color: #276b9f;
     padding: 30px;
     padding-top: 2px;
+}
+
+input.temp {
+    font-size: x-large;
+    border: solid silver;
+    background-color: rgba(2, 26, 8, 0.68);
+    color: lavender;
+    width: 100%;
+    height: 25%;
+}
+
+input.current {
+    font-size: x-large;
+    border: solid silver;
+    background-color: rgba(0, 24, 137, 0.89);
+    color: lavender;
+    width: 100%;
+    height: 25%;
 }
